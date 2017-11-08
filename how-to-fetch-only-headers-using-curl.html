@@ -3,7 +3,7 @@
 <head>
             <meta charset="utf-8">
         <!-- Site Meta Data -->
-        <title>How to find / kill process running on port?</title>
+        <title>How to fetch only headers using curl?</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="PythonicNinja">
@@ -28,13 +28,13 @@
         <meta name="twitter:image" content="">
 
     <meta name="twitter:creator" content="">
-    <meta name="twitter:url" content="/how-to-find-kill-process-running-on-port.html">
-    <meta name="twitter:title" content="Think. Code. Enjoy. ~ How to find / kill process running on port?">
-    <meta name="twitter:description" content="Problem 😱 You run your server and get: s.bind((hostname, port)) OSError: [Errno 48] Address already in use Solution 🤓 | =&gt; lsof -i :your-port-num | =&gt; lsof -i :8000 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME python3.5 81097 pythonicninja 4u IPv4 0x5a7b2c523567dcd7 0t0 TCP *:irdmi (LISTEN) | =&gt; lsof -i :8000 -t …">
+    <meta name="twitter:url" content="/how-to-fetch-only-headers-using-curl.html">
+    <meta name="twitter:title" content="Think. Code. Enjoy. ~ How to fetch only headers using curl?">
+    <meta name="twitter:description" content="Problem 😱 You would like to have get only headers from request. Solution 🤓 We will use curl command to achieve it: | =&gt; curl --help | grep &#34;\-I,&#34; -I, --head Show document info only usage: | =&gt; curl -I http://pythonic.ninja HTTP/1.1 200 OK Server: GitHub.com Date: Wed, 08 Nov 2017 13 …">
 
     <!-- Facebook Meta Data -->
-    <meta property="og:title" content="Think. Code. Enjoy. ~ How to find / kill process running on port?"/>
-    <meta property="og:description" content="Problem 😱 You run your server and get: s.bind((hostname, port)) OSError: [Errno 48] Address already in use Solution 🤓 | =&gt; lsof -i :your-port-num | =&gt; lsof -i :8000 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME python3.5 81097 pythonicninja 4u IPv4 0x5a7b2c523567dcd7 0t0 TCP *:irdmi (LISTEN) | =&gt; lsof -i :8000 -t …"/>
+    <meta property="og:title" content="Think. Code. Enjoy. ~ How to fetch only headers using curl?"/>
+    <meta property="og:description" content="Problem 😱 You would like to have get only headers from request. Solution 🤓 We will use curl command to achieve it: | =&gt; curl --help | grep &#34;\-I,&#34; -I, --head Show document info only usage: | =&gt; curl -I http://pythonic.ninja HTTP/1.1 200 OK Server: GitHub.com Date: Wed, 08 Nov 2017 13 …"/>
     <meta property="og:image" content=""/>
 </head>
 
@@ -82,49 +82,33 @@
 <article>
     <section id="content">
         <article>
-            <h2 class="post_title post_detail"><a href="/how-to-find-kill-process-running-on-port.html" rel="bookmark"
-                                                  title="Permalink to How to find / kill process running on port?">How to find / kill process running on port?</a></h2>
+            <h2 class="post_title post_detail"><a href="/how-to-fetch-only-headers-using-curl.html" rel="bookmark"
+                                                  title="Permalink to How to fetch only headers using curl?">How to fetch only headers using curl?</a></h2>
             <div class="entry-content blog-post">
                 <h1>Problem 😱</h1>
-<p>You run your server and get:</p>
-<div class="highlight"><pre><span></span>s.bind((hostname, port))
-OSError: [Errno 48] Address already in use
-</pre></div>
-
-
+<p>You would like to have get only headers from request.</p>
 <hr>
 <h1>Solution 🤓</h1>
-<div class="highlight"><pre><span></span><span class="p">|</span> <span class="o">=</span>&gt; lsof -i :your-port-num
-
-
-<span class="p">|</span> <span class="o">=</span>&gt; lsof -i :8000
-COMMAND     PID          USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
-python3.5 <span class="m">81097</span> pythonicninja    4u  IPv4 0x5a7b2c523567dcd7      0t0  TCP *:irdmi <span class="o">(</span>LISTEN<span class="o">)</span>
-
-
-<span class="p">|</span> <span class="o">=</span>&gt; lsof -i :8000 -t <span class="p">|</span> xargs <span class="nb">kill</span> -9
-</pre></div>
-
-
-<p>function:</p>
-<div class="highlight"><pre><span></span><span class="k">function</span> fport<span class="o">()</span> <span class="o">{</span> lsof -i :<span class="nv">$@</span><span class="p">;</span> <span class="o">}</span>
-
-<span class="k">function</span> kport<span class="o">()</span> <span class="o">{</span> lsof -i :<span class="nv">$@</span> -t <span class="p">|</span> xargs <span class="nb">kill</span> -9<span class="p">;</span> <span class="o">}</span>
+<p>We will use <code>curl</code> command to achieve it:</p>
+<div class="highlight"><pre><span></span><span class="p">|</span> <span class="o">=</span>&gt; curl --help <span class="p">|</span> grep <span class="s2">&quot;\-I,&quot;</span>
+ -I, --head          Show document info only
 </pre></div>
 
 
 <p>usage:</p>
-<div class="highlight"><pre><span></span><span class="p">|</span> <span class="o">=</span>&gt; fport <span class="m">8000</span>
-COMMAND     PID          USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
-python3.5 <span class="m">25369</span> pythonicninja    6u  IPv4 0x5a7b2c5216355cd7      0t0  TCP *:irdmi <span class="o">(</span>LISTEN<span class="o">)</span>
-python3.5 <span class="m">25373</span> pythonicninja    6u  IPv4 0x5a7b2c5216355cd7      0t0  TCP *:irdmi <span class="o">(</span>LISTEN<span class="o">)</span>
-python3.5 <span class="m">25373</span> pythonicninja    8u  IPv4 0x5a7b2c5216355cd7      0t0  TCP *:irdmi <span class="o">(</span>LISTEN<span class="o">)</span>
-
-<span class="p">|</span> <span class="o">=</span>&gt; kport <span class="m">8000</span>
+<div class="highlight"><pre><span></span><span class="p">|</span> <span class="o">=</span>&gt; curl -I http://pythonic.ninja
+HTTP/1.1 <span class="m">200</span> OK
+Server: GitHub.com
+Date: Wed, <span class="m">08</span> Nov <span class="m">2017</span> <span class="m">13</span>:44:25 GMT
+Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>utf-8
+Content-Length: <span class="m">10556</span>
+Last-Modified: Sun, <span class="m">05</span> Nov <span class="m">2017</span> <span class="m">11</span>:48:59 GMT
+Access-Control-Allow-Origin: *
+Expires: Wed, <span class="m">08</span> Nov <span class="m">2017</span> <span class="m">13</span>:54:25 GMT
+Cache-Control: max-age<span class="o">=</span><span class="m">600</span>
+Accept-Ranges: bytes
+X-GitHub-Request-Id: FF40:288D5:B312F9:F94B6E:5A030A39
 </pre></div>
-
-
-<h1>🎉🎉🎉</h1>
             </div>
             <div class="post_list">
                 <span>By </span>
@@ -132,36 +116,42 @@ python3.5 <span class="m">25373</span> pythonicninja    8u  IPv4 0x5a7b2c5216355
                 <span> in </span>
                 <span class="post_category"><a href="/category/linux.html" rel="bookmark"
                                                title="Permalink to linux">[ linux ]</a></span>
-                <span class="post_date">wto 24 października 2017</span>
+                <span class="post_date">śro 08 listopada 2017</span>
                 <div><span>Tags : </span>
+                            <span><a href="/tag/terminal.html">#terminal, </a></span>
+                            <span><a href="/tag/shell.html">#shell, </a></span>
+                            <span><a href="/tag/bash.html">#bash, </a></span>
+                            <span><a href="/tag/command-line.html">#command-line, </a></span>
+                            <span><a href="/tag/linux.html">#linux, </a></span>
+                            <span><a href="/tag/curl.html">#curl, </a></span>
                 </div>
 
                 <div class="entry-social">
                     <span class="twitter"><a target="_blank" rel="nofollow"
                                              onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;"
                                              title="Twitter"
-                                             href="https://twitter.com/share?url=/how-to-find-kill-process-running-on-port.html&text=How to find / kill process running on port?&via="><img
+                                             href="https://twitter.com/share?url=/how-to-fetch-only-headers-using-curl.html&text=How to fetch only headers using curl?&via="><img
                             src="/theme/images/icons/twitter-s.png"></a></span>
 
                     <span class="gplus"><a target="_blank" title="Google +"
-                                           href="https://plus.google.com/share?url=/how-to-find-kill-process-running-on-port.html&hl=fr"
+                                           href="https://plus.google.com/share?url=/how-to-fetch-only-headers-using-curl.html&hl=fr"
                                            rel="nofollow"
                                            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img
                             src="/theme/images/icons/google-s.png"></a></span>
 
                     <span class="facebook"><a target="_blank" title="Facebook" rel="nofollow"
                                               onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;"
-                                              href="https://www.facebook.com/sharer.php?u=/how-to-find-kill-process-running-on-port.html&t=How to find / kill process running on port?"><img
+                                              href="https://www.facebook.com/sharer.php?u=/how-to-fetch-only-headers-using-curl.html&t=How to fetch only headers using curl?"><img
                             src="/theme/images/icons/facebook-s.png"></a></span>
 
                     <a target="_blank" title="Linkedin"
-                       href="https://www.linkedin.com/shareArticle?mini=true&url=/how-to-find-kill-process-running-on-port.html&title=How to find / kill process running on port?"
+                       href="https://www.linkedin.com/shareArticle?mini=true&url=/how-to-fetch-only-headers-using-curl.html&title=How to fetch only headers using curl?"
                        rel="nofollow"
                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img
                             src="/theme/images/icons/linkedin-s.png"></a>
 
                     <span class="mail"><a
-                            href="mailto:?subject=How to find / kill process running on port?&amp;body=Viens découvrir un article à propos de [How to find / kill process running on port?] sur le site de PythonicNinja. /how-to-find-kill-process-running-on-port.html"
+                            href="mailto:?subject=How to fetch only headers using curl?&amp;body=Viens découvrir un article à propos de [How to fetch only headers using curl?] sur le site de PythonicNinja. /how-to-fetch-only-headers-using-curl.html"
                             title="Share by Email" target="_blank"><img
                             src="/theme/images/icons/mail-s.png"></a></span>
                 </div>
