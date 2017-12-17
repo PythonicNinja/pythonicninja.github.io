@@ -30,11 +30,11 @@
     <meta name="twitter:creator" content="">
     <meta name="twitter:url" content="/how-to-run-react-native-packager-on-different-port.html">
     <meta name="twitter:title" content="Think. Code. Enjoy. ~ How to run react-native packager on different port?">
-    <meta name="twitter:description" content="Problem 😱 You have some program running on react-native default port. Solution 🤓 You will need to run packager with following port: yarn start --port 8085 In your xcode open project_dir/ios/project.xcodeproj. Change following line Libraries/React.xcode.proj/React/Base RCTBundleURLProvider.m const NSUInteger kRCTBundleURLProviderDefaultPort = 8085;">
+    <meta name="twitter:description" content="Problem 😱 You have some program running on react-native default port. Solution 🤓 You will need to run packager with following port: yarn start --port 8085 iOS 📱 In your xcode open project_dir/ios/project.xcodeproj. Change following line Libraries/React.xcode.proj/React/Base RCTBundleURLProvider.m const NSUInteger kRCTBundleURLProviderDefaultPort = 8085; Android 🤖 On …">
 
     <!-- Facebook Meta Data -->
     <meta property="og:title" content="Think. Code. Enjoy. ~ How to run react-native packager on different port?"/>
-    <meta property="og:description" content="Problem 😱 You have some program running on react-native default port. Solution 🤓 You will need to run packager with following port: yarn start --port 8085 In your xcode open project_dir/ios/project.xcodeproj. Change following line Libraries/React.xcode.proj/React/Base RCTBundleURLProvider.m const NSUInteger kRCTBundleURLProviderDefaultPort = 8085;"/>
+    <meta property="og:description" content="Problem 😱 You have some program running on react-native default port. Solution 🤓 You will need to run packager with following port: yarn start --port 8085 iOS 📱 In your xcode open project_dir/ios/project.xcodeproj. Change following line Libraries/React.xcode.proj/React/Base RCTBundleURLProvider.m const NSUInteger kRCTBundleURLProviderDefaultPort = 8085; Android 🤖 On …"/>
     <meta property="og:image" content=""/>
 </head>
 
@@ -98,10 +98,16 @@
 </pre></div>
 
 
+<h2>iOS 📱</h2>
 <p>In your xcode open <code>project_dir/ios/project.xcodeproj</code>.
 Change following line <code>Libraries/React.xcode.proj/React/Base RCTBundleURLProvider.m</code> </p>
 <div class="highlight"><pre><span></span>const NSUInteger <span class="nv">kRCTBundleURLProviderDefaultPort</span> <span class="o">=</span> <span class="m">8085</span><span class="p">;</span>
 </pre></div>
+
+
+<h2>Android 🤖</h2>
+<p>On android emulator press <code>cmd + m</code>.
+Dev Settings -&gt; Debug server host &amp; port for device -&gt; <code>localhost:8085</code>.</p>
             </div>
             <div class="post_list">
                 <span>By </span>
